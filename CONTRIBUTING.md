@@ -1,50 +1,50 @@
 # Contributing to Guest Invoice Admin Hook
 
-Obrigado pelo seu interesse em contribuir com o Guest Invoice Admin Hook! Este documento explica como você pode ajudar a melhorar este projeto.
+Thank you for your interest in contributing to the Guest Invoice Admin Hook! This document explains how you can help improve this project.
 
-## 🤝 Como Contribuir
+## 🤝 How to Contribute
 
-### Reportando Issues
-- Use o [GitHub Issues](https://github.com/yourusername/guest-invoice-admin-hook/issues) para reportar bugs
-- Forneça detalhes: WHMCS versão, navegador, erro exato
-- Inclua screenshots se aplicável
-- Verifique se o issue já não foi reportado
+### Reporting Issues
+- Use [GitHub Issues](https://github.com/staux-dev/guest-invoice-login-admin-button/issues) to report bugs
+- Provide details: WHMCS version, browser, exact error
+- Include screenshots if applicable
+- Check if the issue hasn't been reported already
 
-### Enviando Pull Requests
-1. **Fork** o repositório
-2. **Clone** seu fork: `git clone https://github.com/yourusername/guest-invoice-admin-hook.git`
-3. **Crie** uma branch: `git checkout -b feature/nova-funcionalidade`
-4. **Faça** suas mudanças
-5. **Teste** thoroughly
-6. **Commit**: `git commit -m 'Add nova funcionalidade'`
-7. **Push**: `git push origin feature/nova-funcionalidade`
-8. **Abra** um Pull Request
+### Submitting Pull Requests
+1. **Fork** the repository
+2. **Clone** your fork: `git clone https://github.com/yourusername/guest-invoice-login-admin-button.git`
+3. **Create** a branch: `git checkout -b feature/amazing-feature`
+4. **Make** your changes
+5. **Test** thoroughly
+6. **Commit**: `git commit -m 'Add amazing feature'`
+7. **Push**: `git push origin feature/amazing-feature`
+8. **Open** a Pull Request
 
-## 📋 Tipos de Contribuições
+## 📋 Types of Contributions
 
 ### 🐛 Bug Fixes
-- Correção de erros de JavaScript
-- Melhorias na detecção de containers
-- Correção de compatibilidade com temas
-- Fix de problemas com URLs amigáveis
+- JavaScript error corrections
+- Container detection improvements
+- Theme compatibility fixes
+- Friendly URL issue fixes
 
-### ✨ Novas Funcionalidades
-- Suporte para múltiplos idiomas
-- Opções de customização visual
-- Integração com outros módulos
-- Melhorias na UX do botão
+### ✨ New Features
+- Multi-language support
+- Visual customization options
+- Integration with other modules
+- Button UX improvements
 
-### 📚 Melhorias na Documentação
-- Tradução para outros idiomas
-- Melhorias nos guias de instalação
-- Adição de exemplos de uso
-- Correção de erros de digitação
+### 📚 Documentation Improvements
+- Translations to other languages
+- Installation guide improvements
+- Usage examples addition
+- Typo corrections
 
-### 🧪 Testes
-- Testes de compatibilidade com diferentes versões do WHMCS
-- Testes com diferentes temas (Six, Twenty-One, custom)
-- Testes de performance
-- Testes de segurança
+### 🧪 Testing
+- Compatibility tests with different WHMCS versions
+- Tests with different themes (Six, Twenty-One, custom)
+- Performance tests
+- Security tests
 
 ## 🎯 Diretrizes de Código
 

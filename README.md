@@ -1,131 +1,131 @@
 # Guest Invoice Admin Hook
 
-> **⚠️ Importante**: Este é um hook complementar de código aberto para o módulo comercial Guest Invoice Module da WHMPress. **Não sou o proprietário do módulo original** - este projeto apenas melhora a experiência de uso do módulo existente.
+> **⚠️ Important**: This is an open-source complementary hook for the commercial Guest Invoice Module from WHMPress. **I am not the owner of the original module** - this project only enhances the user experience of the existing module.
 
-## 📋 Sobre
+## 📋 About
 
-### O Problema
-O módulo Guest Invoice Module da WHMPress é excelente e permite que clientes paguem invoices sem precisar fazer login. No entanto, o fluxo de trabalho para administradores tem uma limitação:
+### The Problem
+The WHMPress Guest Invoice Module is excellent and allows clients to pay invoices without needing to login. However, the administrator workflow has a limitation:
 
-**Fluxo atual (problemático)**:
-1. Administrador acessa invoice no painel admin
-2. Clica em "View as Client" para visualizar como cliente
-3. Espera a página carregar na área do cliente
-4. Procura pelo botão "Guest Invoice Link"
-5. Copia o link manualmente
-6. Envie o link ao cliente (WhatsApp, email, etc.)
+**Current workflow (problematic)**:
+1. Administrator accesses invoice in admin panel
+2. Clicks "View as Client" to view as client
+3. Waits for page to load in client area
+4. Searches for "Guest Invoice Link" button
+5. Manually copies the link
+6. Sends link to client (WhatsApp, email, etc.)
 
-**Problemas identificados**:
-- ⏱️ **Perda de tempo**: Múltiplos cliques e carregamentos de página
-- 🔄 **Context switch**: Administrador precisa sair do painel admin
-- 🐛 **Links quebrados**: Clientes reportam telas brancas ao acessar
-- � **UX ruim**: Fluxo não otimizado para suporte rápido
+**Identified problems**:
+- ⏱️ **Time waste**: Multiple clicks and page loads
+- 🔄 **Context switch**: Administrator needs to leave admin panel
+- 🐛 **Broken links**: Clients report white screens when accessing
+- 📱 **Poor UX**: Workflow not optimized for quick support
 
-### A Solução
-Este hook elimina esses problemas adicionando o botão diretamente na página admin:
+### The Solution
+This hook eliminates these problems by adding the button directly to the admin page:
 
-**Novo fluxo (otimizado)**:
-1. Administrador acessa invoice no painel admin ✅
-2. Clica em "Guest Invoice Link" (está na mesma página) ✅
-3. Link é copiado automaticamente ✅
-4. Envie imediatamente ao cliente ✅
+**New workflow (optimized)**:
+1. Administrator accesses invoice in admin panel 
+2. Clicks "Guest Invoice Link" (it's on the same page) 
+3. Link is automatically copied 
+4. Send immediately to client 
 
-**Benefícios alcançados**:
-- ⚡ **80% mais rápido**: De 5-6 passos para 2 passos
-- 🎯 **Sem mudança de contexto**: Fica no painel admin
-- 🔗 **Links sempre funcionais**: Gerados na hora correta
-- 📈 **Produtividade**: Melhora fluxo de equipes de suporte
+**Achieved benefits**:
+- ⚡ **80% faster**: From 5-6 steps to 2 steps
+- 🎯 **No context switching**: Stays in admin panel
+- 🔗 **Always working links**: Generated at the right time
+- 📈 **Productivity**: Improves support team workflow
 
-## 🏆 Por que este hook existe
+## 🏆 Why this hook exists
 
-### Motivação Principal
-Como desenvolvedor que trabalha com WHMCS diariamente, identifiquei que equipes de suporte perdiam tempo significativo copiando links de guest invoices. A necessidade de alternar entre admin e área do cliente, somada a relatos de links quebrados, motivou a criação desta solução.
+### Main Motivation
+As a developer who works with WHMCS daily, I identified that support teams were wasting significant time copying guest invoice links. The need to switch between admin and client areas, combined with reports of broken links, motivated the creation of this solution.
 
-### Contribuição para a Comunidade
-Este projeto é **código aberto** e gratuito porque:
-- 🤝 **Ajuda mútua**: Outros desenvolvedores podem ter o mesmo problema
-- 📚 **Aprendizado**: Compartilhamento de conhecimento sobre hooks WHMCS
-- 🔄 **Melhoria contínua**: Comunidade pode contribuir com melhorias
-- 💡 **Inovação**: Inspira outras soluções para o ecossistema WHMCS
+### Contribution to the Community
+This project is **open-source** and free because:
+- 🤝 **Mutual aid**: Other developers may have the same problem
+- 📚 **Knowledge sharing**: Sharing knowledge about WHMCS hooks
+- 🔄 **Continuous improvement**: Community can contribute with improvements
+- 💡 **Innovation**: Inspires other solutions for the WHMCS ecosystem
 
-### Agradecimentos
-- **WHMPress**: Por criar o excelente Guest Invoice Module que serve de base
-- **WHMCS**: Por fornecer a plataforma e sistema de hooks robusto
-- **Comunidade WHMCS**: Por compartilhar conhecimento e experiências
+### Acknowledgments
+- **WHMPress**: For creating the excellent Guest Invoice Module that serves as base
+- **WHMCS**: For providing the platform and robust hook system
+- **WHMCS Community**: For sharing knowledge and experiences
 
-## ✨ Funcionalidades
+## ✨ Features
 
-- **Geração automática de links**: Cria links de acesso convidado seguros com criptografia
-- **Copy to Clipboard**: Botão com um clique para copiar o link para área de transferência
-- **Compatibilidade total**: Funciona com URLs amigáveis e URLs tradicionais do WHMCS
-- **Sobrevive a atualizações**: Instalado como hook global do WHMCS, não é perdido ao atualizar o módulo
-- **Debug integrado**: Logs detalhados no console para troubleshooting
-- **Design responsivo**: Botão com estilo consistente com o WHMCS
+- **Automatic link generation**: Creates secure guest access links with encryption
+- **Copy to Clipboard**: One-click button to copy link to clipboard
+- **Full compatibility**: Works with WHMCS friendly URLs and traditional URLs
+- **Update-proof**: Installed as WHMCS global hook, not lost when updating module
+- **Integrated debug**: Detailed console logs for troubleshooting
+- **Responsive design**: Button with consistent styling with WHMCS
 
-## 🚀 Instalação
+## 🚀 Installation
 
-### Requisitos
+### Requirements
 - WHMCS 7.0+ 
-- Guest Invoice Module da WHMPress instalado e ativo
-- Acesso administrativo ao WHMCS
+- WHMPress Guest Invoice Module installed and active
+- Administrative access to WHMCS
 
-### Passos
+### Steps
 
-1. **Baixe o arquivo hook**:
+1. **Download the hook file**:
    ```bash
-   # Copie o arquivo guest_invoice_admin_hook.php para seu computador
+   # Copy guest_invoice_admin_hook.php to your computer
    ```
 
-2. **Faça upload para o WHMCS**:
+2. **Upload to WHMCS**:
    ```bash
-   # Envie para: /includes/hooks/guest_invoice_admin_hook.php
+   # Upload to: /includes/hooks/guest_invoice_admin_hook.php
    ```
 
-3. **Verifique a instalação**:
-   - Acesse qualquer invoice no admin: `/admin/invoices.php?action=edit&id=XX`
-   - Abra o console do navegador (F12)
-   - Procure pelos logs: `Guest Invoice Hook: Hook executing...`
-   - O botão deve aparecer próximo aos botões "Manage Invoice", "View as Client"
+3. **Verify installation**:
+   - Access any invoice in admin: `/admin/invoices.php?action=edit&id=XX`
+   - Open browser console (F12)
+   - Look for logs: `Guest Invoice Hook: Hook executing...`
+   - Button should appear near "Manage Invoice", "View as Client" buttons
 
-## 🔧 Configuração
+## 🔧 Configuration
 
-### Tempo de Expiração
-O tempo de expiração dos links é configurado nas configurações do módulo Guest Invoice Module:
+### Expiration Time
+Link expiration time is configured in Guest Invoice Module settings:
 
-1. Acesse: **Setup → Addon Modules → Guest Invoice Module → Configure**
-2. Configure **Link Expiry Time** (em horas)
-3. Padrão: 336 horas (14 dias)
+1. Go to: **Setup → Addon Modules → Guest Invoice Module → Configure**
+2. Configure **Link Expiry Time** (in hours)
+3. Default: 336 hours (14 days)
 
 ### Debug
-Para habilitar logs detalhados:
-- Abra o console do navegador (F12 → Console)
-- Os logs aparecem automaticamente quando acessa uma página de invoice
+To enable detailed logging:
+- Open browser console (F12 → Console)
+- Logs appear automatically when accessing invoice pages
 
 ## 📸 Screenshots
 
-### Antes
-*Administrador precisa clicar em "View as Client", esperar carregar, encontrar o botão e copiar o link*
+### Before
+*Administrator needs to click on "View as Client", wait for the page to load, find the button, and copy the link*
 
-### Depois  
-*Botão "Guest Invoice Link" aparece diretamente na página de edição da invoice*
+### After  
+*Button "Guest Invoice Link" appears directly on the invoice edit page*
 
 ## 🐛 Troubleshooting
 
-### Botão não aparece
-1. Verifique se está na página correta: `/admin/invoices.php?action=edit&id=XX`
-2. Abra o console (F12) e procure por erros
-3. Confirme se o módulo Guest Invoice Module está ativo
-4. Verifique se o arquivo está no local correto: `/includes/hooks/`
+### Button doesn't appear
+1. Check if you're on the correct page: `/admin/invoices.php?action=edit&id=XX`
+2. Open console (F12) and look for errors
+3. Confirm Guest Invoice Module is active
+4. Check if file is in correct location: `/includes/hooks/`
 
-### Link não funciona
-1. Verifique se o tempo de expiração não expirou
-2. Confirme se o cliente associado à invoice existe
-3. Verifique se o SSO está habilitado no WHMCS
+### Link doesn't work
+1. Check if expiration time hasn't expired
+2. Confirm client associated with invoice exists
+3. Verify SSO is enabled in WHMCS
 
-### Erros no console
-- **"Guest Invoice Hook: Not on invoice page"**: Você não está na página de edição de invoice
-- **"Guest Invoice Hook: No client ID found"**: Invoice sem cliente associado
-- **"Guest Invoice Hook: No container found"**: Estrutura HTML não reconhecida (versão antiga do WHMCS)
+### Console errors
+- **"Guest Invoice Hook: Not on invoice page"**: You're not on invoice edit page
+- **"Guest Invoice Hook: No client ID found"**: Invoice without associated client
+- **"Guest Invoice Hook: No container found"**: HTML structure not recognized (old WHMCS version)
 
 ## 🔄 Compatibilidade
 
