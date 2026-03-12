@@ -1,159 +1,159 @@
 # 🚀 Guest Invoice Admin Hook
 
-> **Hook complementar de código aberto** para o módulo Guest Invoice Module da WHMPress que melhora a experiência administrativa no WHMCS.
+> **Open-source complementary hook** for the WHMPress Guest Invoice Module that improves the administrative experience in WHMCS.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![WHMCS Version](https://img.shields.io/badge/WHMCS-7.0+-blue.svg)](https://whmcs.com/)
 [![PHP Version](https://img.shields.io/badge/PHP-7.2+-green.svg)](https://php.net/)
 [![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9C%93-brightgreen.svg)](LICENSE.md)
 
-## ⚡ O Problema Resolvido
+## ⚡ The Problem Solved
 
-O fluxo atual para copiar links de guest invoice é **lento e propenso a erros**:
-
-```
-❌ Fluxo Problemático:
-1. Acessar invoice no admin
-2. Clicar "View as Client" 
-3. Esperar carregar área do cliente
-4. Procurar botão "Guest Invoice Link"
-5. Copiar link manualmente
-6. Enviar ao cliente
-```
-
-**Resultado**: Links quebrados, tempo perdido, UX ruim.
-
-## 🎯 A Solução
-
-Este hook adiciona o botão **diretamente na página admin**:
+The current workflow for copying guest invoice links is **slow and error-prone**:
 
 ```
-✅ Fluxo Otimizado:
-1. Acessar invoice no admin
-2. Clicar "Guest Invoice Link" (mesma página!)
-3. Link copiado automaticamente
-4. Enviar ao cliente
+❌ Problematic Workflow:
+1. Access invoice in admin
+2. Click "View as Client" 
+3. Wait for client area to load
+4. Search for "Guest Invoice Link" button
+5. Manually copy link
+6. Send to client
 ```
 
-**Resultado**: 80% mais rápido, links sempre funcionais, UX excelente.
+**Result**: Broken links, wasted time, poor UX.
 
-## 🌟 Funcionalidades Principais
+## 🎯 The Solution
 
-| Funcionalidade | Benefício |
+This hook adds the button **directly to the admin page**:
+
+```
+✅ Optimized Workflow:
+1. Access invoice in admin
+2. Click "Guest Invoice Link" (same page!)
+3. Link automatically copied
+4. Send to client
+```
+
+**Result**: 80% faster, always working links, excellent UX.
+
+## 🌟 Key Features
+
+| Feature | Benefit |
 |---------------|-----------|
-| 🎯 **Botão na página admin** | Sem alternar contextos |
-| 📋 **Copy to Clipboard** | Um clique para copiar |
-| 🔐 **Links seguros** | Criptografia WHMCS nativa |
-| 🌐 **URLs amigáveis** | Suporte total a friendly URLs |
-| 🎨 **Design consistente** | Integra perfeita com WHMCS |
-| 🐛 **Debug integrado** | Troubleshooting fácil |
-- ⚡ **Alta performance**: Executa apenas quando necessário
-- 🛡️ **Seguro**: Usa APIs WHMCS, sem dados expostos
-- 📱 **Responsivo**: Funciona em todos os dispositivos
+| 🎯 **Button on admin page** | No context switching |
+| 📋 **Copy to Clipboard** | One-click copy |
+| 🔐 **Secure links** | Native WHMCS encryption |
+| 🌐 **Friendly URLs** | Full support for friendly URLs |
+| 🎨 **Consistent design** | Perfect integration with WHMCS |
+| 🐛 **Integrated debug** | Easy troubleshooting |
+- ⚡ **High performance**: Executes only when needed
+- 🛡️ **Secure**: Uses WHMCS APIs, no exposed data
+- 📱 **Responsive**: Works on all devices
 
-## 📦 Instalação Rápida
+## 📦 Quick Installation
 
 ### 1️⃣ Download
 ```bash
-git clone https://github.com/yourusername/guest-invoice-admin-hook.git
+git clone https://github.com/staux-dev/guest-invoice-login-admin-button.git
 ```
 
 ### 2️⃣ Upload
 ```bash
-# Copie para seu WHMCS:
+# Copy to your WHMCS:
 cp guest_invoice_admin_hook.php /path/to/whmcs/includes/hooks/
 ```
 
-### 3️⃣ Verifique
-- Acesse: `/admin/invoices.php?action=edit&id=XX`
-- Procure pelo botão: **"Guest Invoice Link"**
-- Abra console (F12) para ver logs de debug
+### 3️⃣ Verify
+- Access: `/admin/invoices.php?action=edit&id=XX`
+- Look for button: **"Guest Invoice Link"**
+- Open console (F12) to see debug logs
 
-## 🔧 Requisitos
+## 🔧 Requirements
 
 - ✅ **WHMCS 7.0+**
-- ✅ **Guest Invoice Module** (WHMPress) - licença válida necessária
+- ✅ **Guest Invoice Module** (WHMPress) - valid license required
 - ✅ **PHP 7.2+**
-- ✅ **Acesso admin** ao WHMCS
+- ✅ **Admin access** to WHMCS
 
-## 📋 Demonstração
+## 📋 Demo
 
-### Antes vs Depois
+### Before vs After
 
-| Aspecto | Antes | Depois |
+| Aspect | Before | After |
 |---------|-------|--------|
-| ⏱️ Tempo | 30-60 segundos | 5 segundos |
-| 🔄 Cliques | 6+ cliques | 2 cliques |
-| 🐛 Erros | Frequentes | Raros |
-| 😊 UX | Ruim | Excelente |
+| ⏱️ Time | 30-60 seconds | 5 seconds |
+| 🔄 Clicks | 6+ clicks | 2 clicks |
+| 🐛 Errors | Frequent | Rare |
+| 😊 UX | Poor | Excellent |
 
-## 🛠️ Configuração
+## 🛠️ Configuration
 
-O tempo de expiração dos links é configurado no módulo original:
+Link expiration time is configured in the original module:
 
 ```
 Setup → Addon Modules → Guest Invoice Module → Configure
-└── Link Expiry Time: 336 horas (padrão)
+└── Link Expiry Time: 336 hours (default)
 ```
 
 ## 🐛 Troubleshooting
 
-### Botão não aparece?
+### Button not appearing?
 ```bash
-# Verifique console (F12) para logs:
+# Check console (F12) for logs:
 Guest Invoice Hook: Hook executing...
 Guest Invoice Hook: Found container: .btn-group
 Guest Invoice Hook: Button added!
 ```
 
-### Link não funciona?
-- Verifique se o módulo WHMPress está ativo
-- Confirme se a invoice tem cliente associado
-- Teste tempo de expiração
+### Link not working?
+- Check if WHMPress module is active
+- Confirm invoice has associated client
+- Test expiration time
 
-## 📚 Documentação Completa
+## 📚 Complete Documentation
 
-- 📖 [README.md](README.md) - Documentação completa
-- 🔧 [INSTALL.md](INSTALL.md) - Guia detalhado de instalação  
-- 📝 [CHANGELOG.md](CHANGELOG.md) - Histórico de versões
-- 🤝 [CONTRIBUTING.md](CONTRIBUTING.md) - Como contribuir
-- 📄 [LICENSE.md](LICENSE.md) - Termos de licença
+- 📖 [README.md](README.md) - Complete documentation
+- 🔧 [INSTALL.md](INSTALL.md) - Detailed installation guide  
+- 📝 [CHANGELOG.md](CHANGELOG.md) - Version history
+- 🤝 [CONTRIBUTING.md](CONTRIBUTING.md) - How to contribute
+- 📄 [LICENSE.md](LICENSE.md) - License terms
 
-## ⚠️ Disclaimer Importante
+## ⚠️ Important Disclaimer
 
-> **NÃO SOU O PROPRIETÁRIO** do Guest Invoice Module original.  
-> Este é um **hook complementar de código aberto** que requer licença válida do módulo WHMPress para funcionar.
+> **I AM NOT THE OWNER** of the original Guest Invoice Module.  
+> This is an **open-source complementary hook** that requires a valid license from the WHMPress module to function.
 
-| Módulo WHMPress | Este Hook |
+| WHMPress Module | This Hook |
 |-----------------|-----------|
-| 🏢 **Propriedade**: WHMPress | 🌍 **Propriedade**: Código aberto |
-| 💰 **Licença**: Comercial | 🆓 **Licença**: MIT |
-| 🔧 **Função**: Gera links | ⚡ **Função**: Melhora UX |
-| 📦 **Tipo**: Módulo completo | 🎯 **Tipo**: Hook simples |
+| 🏢 **Ownership**: WHMPress | 🌍 **Ownership**: Open source |
+| 💰 **License**: Commercial | 🆓 **License**: MIT |
+| 🔧 **Function**: Generates links | ⚡ **Function**: Improves UX |
+| 📦 **Type**: Complete module | 🎯 **Type**: Simple hook |
 
-## 🤝 Contribua
+## 🤝 Contribute
 
-Contribuições são bem-vindas! 🎉
+Contributions are welcome! 🎉
 
-- 🐛 **Report bugs**: [Issues](https://github.com/yourusername/guest-invoice-admin-hook/issues)
-- 💡 **Sugira melhorias**: [Discussions](https://github.com/yourusername/guest-invoice-admin-hook/discussions)
-- 🔧 **Envie PRs**: [Pull Requests](https://github.com/yourusername/guest-invoice-admin-hook/pulls)
+- 🐛 **Report bugs**: [Issues](https://github.com/staux-dev/guest-invoice-login-admin-button/issues)
+- 💡 **Suggest improvements**: [Discussions](https://github.com/staux-dev/guest-invoice-login-admin-button/discussions)
+- 🔧 **Submit PRs**: [Pull Requests](https://github.com/staux-dev/guest-invoice-login-admin-button/pulls)
 
-## 🏆 Agradecimentos
+## 🏆 Acknowledgments
 
-- **WHMPress**: Pelo excelente Guest Invoice Module
-- **WHMCS**: Pela plataforma robusta e sistema de hooks
-- **Comunidade**: Por compartilhar conhecimento e experiências
+- **WHMPress**: For the excellent Guest Invoice Module
+- **WHMCS**: For the robust platform and hook system
+- **Community**: For sharing knowledge and experiences
 
-## 📄 Licença
+## 📄 License
 
-Este projeto está licenciado sob [MIT License](LICENSE.md).
+This project is licensed under [MIT License](LICENSE.md).
 
 ---
 
 <div align="center">
 
-**⭐ Se este hook ajudou você, deixe uma estrela!**
+**⭐ If this hook helped you, leave a star!**
 
 Made with ❤️ for the WHMCS Community
 
