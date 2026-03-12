@@ -61,7 +61,7 @@ git clone https://github.com/staux-dev/guest-invoice-login-admin-button.git
 ### 2️⃣ Upload
 ```bash
 # Copy to your WHMCS:
-cp guest_invoice_admin_hook.php /path/to/whmcs/includes/hooks/
+cp guest-invoice-login-admin-button.php /path/to/whmcs/includes/hooks/
 ```
 
 ### 3️⃣ Verify

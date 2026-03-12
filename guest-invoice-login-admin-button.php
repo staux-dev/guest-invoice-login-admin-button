@@ -2,7 +2,7 @@
 /**
  * Guest Invoice Module - Admin Hook
  * Adds "Guest Invoice Link" button to admin invoice page
- * Place this file in: includes/hooks/guest_invoice_admin_button.php
+ * Place this file in: includes/hooks/guest-invoice-login-admin-button.php
  */
 
 use WHMCS\Database\Capsule;

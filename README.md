@@ -73,12 +73,12 @@ This project is **open-source** and free because:
 
 1. **Download the hook file**:
    ```bash
-   # Copy guest_invoice_admin_hook.php to your computer
+   # Copy guest-invoice-login-admin-button.php to your computer
    ```
 
 2. **Upload to WHMCS**:
    ```bash
-   # Upload to: /includes/hooks/guest_invoice_admin_hook.php
+   # Upload to: /includes/hooks/guest-invoice-login-admin-button.php
    ```
 
 3. **Verify installation**:
