@@ -147,79 +147,79 @@ RewriteRule ^([a-z0-9-]+-[A-Za-z0-9_-]{6,32})$ gi.php?slug=$1 [L,QSA,NC]
 - **"Guest Invoice Hook: No client ID found"**: Invoice without associated client
 - **"Guest Invoice Hook: No container found"**: HTML structure not recognized (old WHMCS version)
 
-## 🔄 Compatibilidade
+## 🔄 Compatibility
 
-| WHMCS Versão | Compatível | Observações |
-|---------------|------------|-------------|
-| 7.0 - 8.0 | ✅ | Testado e funcionando |
-| 8.1 - 8.5 | ✅ | Compatível com friendly URLs |
-| 8.6+ | ✅ | Testado com tema Six e Twenty-One |
+| WHMCS Version | Compatible | Notes |
+|---------------|------------|------|
+| 7.0 - 8.0 | ✅ | Tested and working |
+| 8.1 - 8.5 | ✅ | Compatible with friendly URLs |
+| 8.6+ | ✅ | Tested with Six and Twenty-One themes |
 
 ## 📝 Changelog
 
 ### v1.0.0 (2026-03-11)
-- ✨ Versão inicial
-- 🎯 Botão "Guest Invoice Link" na página admin
-- 🔐 Geração automática de links encriptados
+- ✨ Initial release
+- 🎯 "Guest Invoice Link" button on the admin invoice page
+- 🔐 Automatic generation of encrypted guest access links
 - 📋 Copy to clipboard functionality
-- 🐛 Debug integrado
-- 🌐 Suporte para URLs amigáveis
+- 🐛 Integrated debug logs
+- 🌐 Support for friendly URLs
 
-## 📄 Licença e Termos
+## 📄 License and Terms
 
-### ⚠️ Disclaimer Importante
-- **NÃO SOU O PROPRIETÁRIO** do Guest Invoice Module original
-- Este é um **hook complementar** de código aberto
-- **Requer licença válida** do módulo WHMPress original para funcionar
-- **Uso comercial** do módulo original está sujeito aos termos da WHMPress
+### ⚠️ Important Disclaimer
+- **I AM NOT THE OWNER** of the original Guest Invoice Module
+- This is an **open-source complementary hook**
+- **Requires a valid license** for the original WHMPress module to work
+- **Commercial usage** of the original module is subject to WHMPress terms
 
-### 🏗️ Relação com o Módulo Original
-| Aspecto | Módulo WHMPress | Este Hook |
-|---------|----------------|-----------|
-| **Propriedade** | WHMPress | Código aberto |
-| **Licença** | Comercial | MIT |
-| **Função** | Gera links de guest | Melhora UX admin |
-| **Dependência** | Independente | Requer módulo |
-| **Instalação** | Módulo completo | Hook simples |
+### 🏗️ Relationship with the Original Module
+| Aspect | WHMPress Module | This Hook |
+|--------|------------------|-----------|
+| **Ownership** | WHMPress | Open source |
+| **License** | Commercial | MIT |
+| **Purpose** | Generates guest links | Improves admin UX |
+| **Dependency** | Standalone | Requires module |
+| **Installation** | Full module | Simple hook |
 
-### 📜 Termos de Uso
-✅ **Permitido**:
-- Uso com licença válida do módulo WHMPress
-- Modificação para suas necessidades
-- Distribuição com atribuição adequada
-- Contribuição para o projeto
+### 📜 Terms of Use
+✅ **Allowed**:
+- Use with a valid license of the WHMPress module
+- Modify for your needs
+- Distribute with proper attribution
+- Contribute to the project
 
-❌ **Proibido**:
-- Vender este hook como produto separado
-- Remover atribuições
-- Usar sem licença do módulo original
-- Claim de propriedade intelectual sobre o módulo base
+❌ **Not allowed**:
+- Sell this hook as a standalone product
+- Remove attributions
+- Use without a valid license for the original module
+- Claim intellectual property over the original module
 
-## 🤝 Contribuição
+## 🤝 Contributing
 
-Contribuições são bem-vindas! Por favor:
+Contributions are welcome. Please:
 
-1. Faça fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/amazing-feature`)
-3. Commit suas mudanças (`git commit -m 'Add amazing feature'`)
-4. Push para a branch (`git push origin feature/amazing-feature`)
-5. Abra um Pull Request
+1. Fork the project
+2. Create a branch for your feature (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## 📞 Suporte
+## 📞 Support
 
-Para suporte do módulo original Guest Invoice Module:
+For support of the original Guest Invoice Module:
 - **WHMPress**: https://whmpress.com/
-- **Documentação**: https://docs.whmpress.com/
+- **Documentation**: https://docs.whmpress.com/
 
-Para suporte deste hook:
-- **Issues**: Reporte problemas na documentação
-- **Debug**: Use o console do navegador para troubleshooting
+For support of this hook:
+- **Issues**: Report issues in the repository
+- **Debug**: Use the browser console for troubleshooting
 
-## 🏆 Créditos
+## 🏆 Credits
 
-- **WHMPress** - Criador do Guest Invoice Module original
-- **WHMCS** - Plataforma de gestão de hosting
+- **WHMPress** - Creator of the original Guest Invoice Module
+- **WHMCS** - Hosting management platform
 
 ---
 
-**Nota**: Este hook não afeta o funcionamento do módulo original. É uma camada adicional para melhorar a experiência administrativa.
+**Note**: This hook does not affect the original module behavior. It is an additional layer to improve the admin experience.
