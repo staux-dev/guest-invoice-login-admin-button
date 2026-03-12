@@ -5,6 +5,17 @@ All notable changes to the Guest Invoice Admin Hook will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-03-12
+
+### Added
+- 🔗 Short, WhatsApp-friendly URLs via `gi.php` redirect endpoint
+- 🧠 Automatic shortlink persistence in DB table `mod_guest_invoice_shortlinks`
+- ✅ Support for `gi.php?code=...` format without needing web server rewrites
+- 🧩 Optional Apache rewrite rule support for pretty URLs (no `gi.php` in the link)
+
+### Changed
+- 📋 Admin button now copies the short URL by default (falls back to full URL if needed)
+
 ## [1.0.0] - 2026-03-11
 
 ### Added

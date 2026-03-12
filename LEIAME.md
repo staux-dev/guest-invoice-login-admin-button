@@ -57,6 +57,7 @@ Este projeto é **código aberto** e gratuito porque:
 
 - **Geração automática de links**: Cria links de acesso convidado seguros com criptografia
 - **Copy to Clipboard**: Botão com um clique para copiar o link para área de transferência
+- **Link curto (bom para WhatsApp)**: Copia uma URL curta e limpa que redireciona para o link completo do módulo
 - **Compatibilidade total**: Funciona com URLs amigáveis e URLs tradicionais do WHMCS
 - **Sobrevive a atualizações**: Instalado como hook global do WHMCS, não é perdido ao atualizar o módulo
 - **Debug integrado**: Logs detalhados no console para troubleshooting
@@ -73,19 +74,25 @@ Este projeto é **código aberto** e gratuito porque:
 
 1. **Baixe o arquivo hook**:
    ```bash
-   # Copie o arquivo guest_invoice_admin_hook.php para seu computador
+   # Copie o arquivo guest-invoice-login-admin-button.php para seu computador
    ```
 
 2. **Faça upload para o WHMCS**:
    ```bash
-   # Envie para: /includes/hooks/guest_invoice_admin_hook.php
+   # Envie para: /includes/hooks/guest-invoice-login-admin-button.php
    ```
 
-3. **Verifique a instalação**:
+3. **Faça upload do endpoint de redirecionamento na raiz do WHMCS**:
+   ```bash
+   # Envie para: /gi.php  (mesma pasta onde existe o init.php)
+   ```
+
+4. **Verifique a instalação**:
    - Acesse qualquer invoice no admin: `/admin/invoices.php?action=edit&id=XX`
    - Abra o console do navegador (F12)
    - Procure pelos logs: `Guest Invoice Hook: Hook executing...`
    - O botão deve aparecer próximo aos botões "Manage Invoice", "View as Client"
+   - Clique no botão e confirme que o link copiado fica tipo: `https://seudominio.tld/gi.php?code=XXXXXXXXXXXX`
 
 ## 🔧 Configuração
 
@@ -121,6 +128,19 @@ Para habilitar logs detalhados:
 1. Verifique se o tempo de expiração não expirou
 2. Confirme se o cliente associado à invoice existe
 3. Verifique se o SSO está habilitado no WHMCS
+4. Confirme se o `gi.php` responde em: `https://seudominio.tld/gi.php` (não pode ser 404)
+
+### Opcional: URL “bonita” (sem gi.php no link)
+O formato padrão já funciona sem configurar o servidor:
+- `https://seudominio.tld/gi.php?code=XXXXXXXXXXXX`
+
+Se você quiser um formato assim:
+- `https://seudominio.tld/nome-do-cliente-123-2026-03-12-XXXXXXXXXXXX`
+
+Adicione esta regra no Apache **acima** das regras do WHMCS:
+```apache
+RewriteRule ^([a-z0-9-]+-[A-Za-z0-9_-]{6,32})$ gi.php?slug=$1 [L,QSA,NC]
+```
 
 ### Erros no console
 - **"Guest Invoice Hook: Not on invoice page"**: Você não está na página de edição de invoice

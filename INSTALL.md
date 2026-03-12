@@ -21,16 +21,18 @@ This guide provides step-by-step instructions for installing the Guest Invoice A
 
 ## 🚀 Quick Installation (5 Minutes)
 
-### Step 1: Download the Hook File
+### Step 1: Download the Files
 ```bash
-# Download guest_invoice_admin_hook.php
-# Location: modules/guest-invoice/guest_invoice_module/guest_invoice_admin_hook.php
+# Download:
+# - guest-invoice-login-admin-button.php (hook)
+# - gi.php (public redirect endpoint)
 ```
 
 ### Step 2: Upload to WHMCS
 ```bash
 # Upload to your WHMCS installation:
-# /includes/hooks/guest_invoice_admin_hook.php
+# /includes/hooks/guest-invoice-login-admin-button.php
+# /gi.php  (WHMCS root, same directory where init.php exists)
 ```
 
 ### Step 3: Verify Installation
@@ -39,6 +41,7 @@ This guide provides step-by-step instructions for installing the Guest Invoice A
 3. Open browser console (F12 → Console)
 4. Look for: `Guest Invoice Hook: Hook executing...`
 5. Confirm "Guest Invoice Link" button appears
+6. Click the button and confirm the copied URL looks like: `https://yourdomain.tld/gi.php?code=XXXXXXXXXXXX`
 
 ---
 
@@ -69,8 +72,11 @@ cd /var/www/html/whmcs/  # Adjust path as needed
 
 #### Option A: Upload via FTP/SFTP
 ```bash
-# Upload guest_invoice_admin_hook.php to:
-# /path/to/whmcs/includes/hooks/
+# Upload guest-invoice-login-admin-button.php to:
+# /path/to/whmcs/includes/hooks/guest-invoice-login-admin-button.php
+
+# Upload gi.php to WHMCS root:
+# /path/to/whmcs/gi.php
 ```
 
 #### Option B: Create File Directly
@@ -109,6 +115,18 @@ The hook includes built-in debug logging. To view:
 2. Open browser console (F12)
 3. Look for logs starting with `Guest Invoice Hook:`
 
+### Optional: Pretty URLs (no gi.php in the link)
+The default short URL requires no web server configuration:
+- `https://yourdomain.tld/gi.php?code=XXXXXXXXXXXX`
+
+If you want a pretty URL like:
+- `https://yourdomain.tld/client-name-123-2026-03-12-XXXXXXXXXXXX`
+
+Add this Apache rule **above** the WHMCS rewrite block:
+```apache
+RewriteRule ^([a-z0-9-]+-[A-Za-z0-9_-]{6,32})$ gi.php?slug=$1 [L,QSA,NC]
+```
+
 ---
 
 ## ✅ Verification Checklist
@@ -120,7 +138,8 @@ The hook includes built-in debug logging. To view:
 - [ ] Backup of current hooks directory (optional)
 
 ### Post-Installation Checklist
-- [ ] File uploaded to `/includes/hooks/guest_invoice_admin_hook.php`
+- [ ] Hook uploaded to `/includes/hooks/guest-invoice-login-admin-button.php`
+- [ ] `gi.php` uploaded to `/gi.php` (WHMCS root)
 - [ ] File permissions set correctly (644)
 - [ ] Hook appears in console logs
 - [ ] Button displays on invoice edit pages
@@ -138,7 +157,10 @@ The hook includes built-in debug logging. To view:
 **Solutions**:
 ```bash
 # Check file location
-ls -la /path/to/whmcs/includes/hooks/guest_invoice_admin_hook.php
+ls -la /path/to/whmcs/includes/hooks/guest-invoice-login-admin-button.php
+
+# Check gi.php exists in WHMCS root
+ls -la /path/to/whmcs/gi.php
 
 # Check permissions
 ls -la /path/to/whmcs/includes/hooks/
@@ -186,14 +208,16 @@ Enable detailed logging:
 
 ### Updating the Hook
 1. Download new version
-2. Replace existing file: `/includes/hooks/guest_invoice_admin_hook.php`
+2. Replace existing file: `/includes/hooks/guest-invoice-login-admin-button.php`
+3. Replace `/gi.php` if provided in the release
 3. Clear browser cache
 4. Test functionality
 
 ### Removing the Hook
 ```bash
 # Simply delete the file
-rm /path/to/whmcs/includes/hooks/guest_invoice_admin_hook.php
+rm /path/to/whmcs/includes/hooks/guest-invoice-login-admin-button.php
+rm /path/to/whmcs/gi.php
 ```
 
 ### Backup Before Updates

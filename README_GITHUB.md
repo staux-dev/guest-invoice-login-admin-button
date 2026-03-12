@@ -44,6 +44,7 @@ This hook adds the button **directly to the admin page**:
 | 🎯 **Button on admin page** | No context switching |
 | 📋 **Copy to Clipboard** | One-click copy |
 | 🔐 **Secure links** | Native WHMCS encryption |
+| 🔗 **Short URLs** | Clean link to share on WhatsApp |
 | 🌐 **Friendly URLs** | Full support for friendly URLs |
 | 🎨 **Consistent design** | Perfect integration with WHMCS |
 | 🐛 **Integrated debug** | Easy troubleshooting |
@@ -62,6 +63,9 @@ git clone https://github.com/staux-dev/guest-invoice-login-admin-button.git
 ```bash
 # Copy to your WHMCS:
 cp guest-invoice-login-admin-button.php /path/to/whmcs/includes/hooks/
+
+# Also copy the redirect endpoint to WHMCS root:
+cp gi.php /path/to/whmcs/
 ```
 
 ### 3️⃣ Verify

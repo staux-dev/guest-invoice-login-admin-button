@@ -57,6 +57,7 @@ This project is **open-source** and free because:
 
 - **Automatic link generation**: Creates secure guest access links with encryption
 - **Copy to Clipboard**: One-click button to copy link to clipboard
+- **Short, WhatsApp-friendly link**: Copies a clean short URL that redirects to the full module link
 - **Full compatibility**: Works with WHMCS friendly URLs and traditional URLs
 - **Update-proof**: Installed as WHMCS global hook, not lost when updating module
 - **Integrated debug**: Detailed console logs for troubleshooting
@@ -76,16 +77,22 @@ This project is **open-source** and free because:
    # Copy guest-invoice-login-admin-button.php to your computer
    ```
 
-2. **Upload to WHMCS**:
+2. **Upload the hook to WHMCS**:
    ```bash
    # Upload to: /includes/hooks/guest-invoice-login-admin-button.php
    ```
 
-3. **Verify installation**:
+3. **Upload the redirect endpoint to WHMCS root**:
+   ```bash
+   # Upload to: /gi.php  (same directory where init.php exists)
+   ```
+
+4. **Verify installation**:
    - Access any invoice in admin: `/admin/invoices.php?action=edit&id=XX`
    - Open browser console (F12)
    - Look for logs: `Guest Invoice Hook: Hook executing...`
    - Button should appear near "Manage Invoice", "View as Client" buttons
+   - Click the button and verify the copied link looks like: `https://yourdomain.tld/gi.php?code=XXXXXXXXXXXX`
 
 ## 🔧 Configuration
 
@@ -121,6 +128,19 @@ To enable detailed logging:
 1. Check if expiration time hasn't expired
 2. Confirm client associated with invoice exists
 3. Verify SSO is enabled in WHMCS
+4. Confirm `gi.php` is accessible at: `https://yourdomain.tld/gi.php` (should not be 404)
+
+### Optional: Pretty URLs (no gi.php in the link)
+The default short link format does not require any web server changes:
+- `https://yourdomain.tld/gi.php?code=XXXXXXXXXXXX`
+
+If you want a pretty URL like:
+- `https://yourdomain.tld/client-name-123-2026-03-12-XXXXXXXXXXXX`
+
+Add an Apache rewrite rule **above** the WHMCS rewrite block:
+```apache
+RewriteRule ^([a-z0-9-]+-[A-Za-z0-9_-]{6,32})$ gi.php?slug=$1 [L,QSA,NC]
+```
 
 ### Console errors
 - **"Guest Invoice Hook: Not on invoice page"**: You're not on invoice edit page

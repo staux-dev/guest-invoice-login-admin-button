@@ -92,7 +92,6 @@ add_hook('AdminAreaHeadOutput', 1, function($vars) {
     }
     $encryptedExpiry = rawurlencode($expiryResult['password']);
     
-    // Build the guest invoice link
     $whmcsBaseUrl = Capsule::table('tblconfiguration')->where('setting', 'SystemURL')->value('value');
     $whmcsBaseUrl = rtrim($whmcsBaseUrl, '/') . '/';
     
@@ -102,9 +101,127 @@ add_hook('AdminAreaHeadOutput', 1, function($vars) {
         . '&invoiceid=' . $encryptedInvoiceId
         . '&expi=' . $encryptedExpiry
         . '&guestuser=true';
+
+    $shortLink = '';
+    $shortBaseUrl = defined('GUEST_INVOICE_SHORTENER_BASE_URL') ? (string) constant('GUEST_INVOICE_SHORTENER_BASE_URL') : $whmcsBaseUrl;
+    $shortBaseUrl = rtrim($shortBaseUrl, '/') . '/';
+
+    $clientName = '';
+    if (!empty($invoiceData['firstname']) || !empty($invoiceData['lastname'])) {
+        $clientName = trim(($invoiceData['firstname'] ?? '') . ' ' . ($invoiceData['lastname'] ?? ''));
+    } elseif (!empty($invoiceData['clientname'])) {
+        $clientName = (string) $invoiceData['clientname'];
+    } else {
+        $clientDetails = localAPI('GetClientsDetails', ['clientid' => $clientId, 'stats' => false]);
+        if (is_array($clientDetails) && ($clientDetails['result'] ?? '') === 'success') {
+            $clientName = trim((string) ($clientDetails['firstname'] ?? '') . ' ' . (string) ($clientDetails['lastname'] ?? ''));
+        }
+    }
+
+    $invoiceDate = '';
+    if (!empty($invoiceData['date'])) {
+        $ts = strtotime((string) $invoiceData['date']);
+        if ($ts !== false) {
+            $invoiceDate = date('Y-m-d', $ts);
+        }
+    }
+    if ($invoiceDate === '') {
+        $invoiceDate = date('Y-m-d');
+    }
+
+    $normalize = function (string $value): string {
+        if (function_exists('mb_strtolower')) {
+            $value = mb_strtolower($value, 'UTF-8');
+        } else {
+            $value = strtolower($value);
+        }
+        if (function_exists('iconv')) {
+            $converted = @iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $value);
+            if (is_string($converted) && $converted !== '') {
+                $value = $converted;
+            }
+        }
+        $value = preg_replace('/[^a-z0-9]+/i', '-', $value) ?? '';
+        $value = trim($value, '-');
+        $value = preg_replace('/-+/', '-', $value) ?? '';
+        return $value;
+    };
+
+    $clientSlug = $normalize($clientName);
+    if ($clientSlug === '') {
+        $clientSlug = 'cliente-' . (int) $clientId;
+    }
+    $slug = $clientSlug . '-' . (int) $invoiceId . '-' . $invoiceDate;
+
+    $shortTable = 'mod_guest_invoice_shortlinks';
+    try {
+        $schema = Capsule::schema();
+        if (method_exists($schema, 'hasTable') && !$schema->hasTable($shortTable)) {
+            $schema->create($shortTable, function ($table) {
+                $table->increments('id');
+                $table->string('code', 32)->unique();
+                $table->string('slug', 255)->index();
+                $table->integer('invoice_id')->index();
+                $table->integer('client_id')->index();
+                $table->integer('expiry_time')->index();
+                $table->integer('created_at')->index();
+            });
+        }
+
+        $now = time();
+        $existing = Capsule::table($shortTable)
+            ->where('invoice_id', (int) $invoiceId)
+            ->where('client_id', (int) $clientId)
+            ->where('expiry_time', '>', $now)
+            ->orderBy('id', 'desc')
+            ->first();
+
+        $code = '';
+        if ($existing && !empty($existing->code) && is_string($existing->code)) {
+            $code = $existing->code;
+            if (!empty($existing->expiry_time)) {
+                $expiryTime = (int) $existing->expiry_time;
+            }
+        } else {
+            $newExpiryTime = $now + ((int) $expiryHours * 3600);
+            $expiryTime = $newExpiryTime;
+
+            $base64urlEncode = function (string $data): string {
+                return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+            };
+
+            for ($attempt = 0; $attempt < 5; $attempt++) {
+                $candidate = substr($base64urlEncode(random_bytes(9)), 0, 12);
+                if ($candidate === '') {
+                    continue;
+                }
+                $exists = Capsule::table($shortTable)->where('code', $candidate)->exists();
+                if ($exists) {
+                    continue;
+                }
+                Capsule::table($shortTable)->insert([
+                    'code' => $candidate,
+                    'slug' => $slug,
+                    'invoice_id' => (int) $invoiceId,
+                    'client_id' => (int) $clientId,
+                    'expiry_time' => (int) $newExpiryTime,
+                    'created_at' => (int) $now,
+                ]);
+                $code = $candidate;
+                break;
+            }
+        }
+
+        if ($code !== '') {
+            $shortLink = $shortBaseUrl . 'gi.php?code=' . rawurlencode($code);
+        }
+    } catch (\Throwable $e) {
+        $shortLink = '';
+    }
     
 // Return debug output + JavaScript - SIMPLIFIED VERSION
-    $guestLinkEscaped = htmlspecialchars($guestLink, ENT_QUOTES, 'UTF-8');
+    $linkToCopy = $shortLink !== '' ? $shortLink : $guestLink;
+    $guestLinkEscaped = htmlspecialchars($linkToCopy, ENT_QUOTES, 'UTF-8');
     
     return $debugOutput . <<<HTML
 <script>
