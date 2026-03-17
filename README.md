@@ -124,7 +124,22 @@ To enable detailed logging:
 3. Confirm Guest Invoice Module is active
 4. Check if file is in correct location: `/includes/hooks/`
 
-### Link doesn't work
+### Link doesn't work / White screen / Loop
+**⚠️ Common Issue**: Session conflicts between logged-in users and guest access.
+
+**Symptoms**:
+- 🔄 White screen with infinite reload
+- 📊 Activity log showing "Guest Session Active" repeatedly
+- ❌ Links work sometimes but not always
+
+**Solution**: Apply the session cleanup fix described in `GUEST_INVOICE_LOOP_FIX.md`
+
+**Quick fix steps**:
+1. Update `gi.php` with session cleanup (see fix file)
+2. Update `guest_invoice_module/hooks.php` with enhanced session handling
+3. Test with both logged-in and anonymous users
+
+### General link issues
 1. Check if expiration time hasn't expired
 2. Confirm client associated with invoice exists
 3. Verify SSO is enabled in WHMCS
@@ -156,6 +171,13 @@ RewriteRule ^([a-z0-9-]+-[A-Za-z0-9_-]{6,32})$ gi.php?slug=$1 [L,QSA,NC]
 | 8.6+ | ✅ | Tested with Six and Twenty-One themes |
 
 ## 📝 Changelog
+
+### v1.1.0 (2026-03-16)
+- 🐛 **Fixed**: Session loop issue causing white screens
+- 🧹 **Added**: Session cleanup in gi.php and hooks.php
+- 🌐 **Added**: Support for WHMCS friendly URLs
+- 👥 **Fixed**: Multiple users can now access same guest link
+- 📄 **Added**: `GUEST_INVOICE_LOOP_FIX.md` documentation
 
 ### v1.0.0 (2026-03-11)
 - ✨ Initial release

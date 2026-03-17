@@ -48,6 +48,10 @@ This hook adds the button **directly to the admin page**:
 | 🌐 **Friendly URLs** | Full support for friendly URLs |
 | 🎨 **Consistent design** | Perfect integration with WHMCS |
 | 🐛 **Integrated debug** | Easy troubleshooting |
+| 🧹 **Session cleanup** | Prevents white screen loops |
+| 👥 **Multi-user support** | Multiple users can access same link |
+
+## ⚡ Additional Benefits
 - ⚡ **High performance**: Executes only when needed
 - 🛡️ **Secure**: Uses WHMCS APIs, no exposed data
 - 📱 **Responsive**: Works on all devices
@@ -110,7 +114,21 @@ Guest Invoice Hook: Found container: .btn-group
 Guest Invoice Hook: Button added!
 ```
 
-### Link not working?
+### Link not working / White screen?
+**⚠️ Common Issue**: Session conflicts between logged-in users and guest access.
+
+**Symptoms**:
+- 🔄 White screen with infinite reload
+- 📊 Activity log showing "Guest Session Active" repeatedly
+
+**Solution**: See `GUEST_INVOICE_LOOP_FIX.md` for complete fix instructions.
+
+**Quick fix**:
+1. Update `gi.php` with session cleanup
+2. Update `guest_invoice_module/hooks.php` with enhanced session handling
+3. Test with both logged-in and anonymous users
+
+### General link issues?
 - Check if WHMPress module is active
 - Confirm invoice has associated client
 - Test expiration time
@@ -118,7 +136,7 @@ Guest Invoice Hook: Button added!
 ## 📚 Complete Documentation
 
 - 📖 [README.md](README.md) - Complete documentation
-- 🔧 [INSTALL.md](INSTALL.md) - Detailed installation guide  
+- 🔧 [GUEST_INVOICE_LOOP_FIX.md](GUEST_INVOICE_LOOP_FIX.md) - Session loop fix guide
 - 📝 [CHANGELOG.md](CHANGELOG.md) - Version history
 - 🤝 [CONTRIBUTING.md](CONTRIBUTING.md) - How to contribute
 - 📄 [LICENSE.md](LICENSE.md) - License terms

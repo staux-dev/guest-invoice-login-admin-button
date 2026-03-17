@@ -4,6 +4,25 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/init.php';
 
+// Destroy any existing session to prevent conflict with guest invoice module
+// This ensures the addon can create its own clean guest session
+if (session_status() === PHP_SESSION_ACTIVE) {
+    $sessionName = session_name();
+    session_unset();
+    session_destroy();
+    // Invalidate session cookie
+    if (isset($_COOKIE[$sessionName])) {
+        setcookie($sessionName, '', [
+            'expires' => time() - 3600,
+            'path' => '/',
+            'secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on',
+            'httponly' => true,
+            'samesite' => 'Lax'
+        ]);
+        unset($_COOKIE[$sessionName]);
+    }
+}
+
 use WHMCS\Database\Capsule;
 
 function guest_invoice_base64url_encode(string $data): string

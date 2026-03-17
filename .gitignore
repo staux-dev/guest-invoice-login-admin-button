@@ -1,0 +1,42 @@
+# WHMPress Guest Invoice Module (private/commercial)
+guest_invoice_module/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# Backup files
+*.bak
+*.backup
+
+# Cache
+.cache/
+
+# Node modules (if any)
+node_modules/
+
+# Composer (if any)
+vendor/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Build outputs
+dist/
+build/
